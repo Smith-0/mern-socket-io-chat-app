@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.login_page_bg {
+  background-color: #075e54;
+  background-image: linear-gradient(315deg, #075e54 0%, #128c7e 74%);
+}
+
+.conversation {
+  background-image: url("./images/defaultChatBg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.messageArea {
+  height: calc(100vh - 136px);
+}
+
+.primary__button {
+  background-color: #008069;
+  color: #fff;
+  padding: 7px 15px;
+  border-radius: 7px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.primary__button:hover {
+  background-color: #019d81;
+}
+
+.profile__pic__overlay {
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  z-index: 1;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.profile__pic__overlay__icon {
+  font-size: 64px;
+  color: #fff;
+  position: absolute;
+  top: -150%;
+  left: 50%;
+  transform: translate(-50%, 150%);
+  z-index: 2;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.profile__pic__label {
+  cursor: pointer;
+}
+
+.profile__pic__label:hover .profile__pic__overlay {
+  opacity: 100;
+}
+
+.profile__pic__label:hover .profile__pic__overlay__icon {
+  opacity: 100;
+}
+
+.or__text {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid rgb(255, 255, 255);
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+}
+
+.or__text span {
+  background: #0b7166;
+  border-radius: 20px;
+  padding: 0 20px;
+  padding-bottom: 5px;
+}
