@@ -24,7 +24,7 @@ app.use("/message", messageRoutes);
 // --------------------------deployment------------------------------
 
 const __dirname1 = path.resolve();
-console.log(path.resolve(__dirname1, "frontend", "build", "index.html"));
+console.log(__dirname1);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname1, "/frontend/build")));
@@ -41,7 +41,7 @@ if (process.env.NODE_ENV === "production") {
 // --------------------------deployment------------------------------
 
 const server = app.listen(process.env.PORT || 5000, () =>
-  console.log(`Example app listening on port 5000`)
+  console.log(`Example app listening on port ${__dirname1}`)
 );
 
 const io = new Server(server, {
