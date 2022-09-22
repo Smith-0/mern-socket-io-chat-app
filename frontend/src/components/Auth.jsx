@@ -45,6 +45,8 @@ export default function Auth() {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
+    const apiUrl = "https://mern-socket-io-chat-app.herokuapp.com";
+
     if (isSignUp) {
       if (userData.password === userData.cpassword) {
         for (var key in userData) {
@@ -54,15 +56,11 @@ export default function Auth() {
         formData.append("picture", imagefile.files[0]);
         try {
           const { data } = await toast.promise(
-            await axios.post(
-              `${process.env.REACT_APP_API_ENDPOINT}user/register`,
-              formData,
-              {
-                headers: {
-                  "Content-Type": "multipart/form-data",
-                },
-              }
-            ),
+            await axios.post(`${apiUrl}user/register`, formData, {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }),
             {
               pending: "Logging in....",
               success: "Logged in successfully",
@@ -81,10 +79,7 @@ export default function Auth() {
     } else {
       try {
         const { data } = await toast.promise(
-          axios.post(
-            `${process.env.REACT_APP_API_ENDPOINT}user/login`,
-            userData
-          ),
+          axios.post(`${apiUrl}user/login`, userData),
           {
             pending: "Logging in....",
             success: "Logged in successfully",
@@ -92,7 +87,7 @@ export default function Auth() {
           }
         );
         // const { data } = await axios.post(
-        //   `${process.env.REACT_APP_API_ENDPOINT}user/login`,
+        //   `${apiUrl}user/login`,
         //   userData
         // );
         localStorage.setItem("userData", JSON.stringify(data));
@@ -120,10 +115,7 @@ export default function Auth() {
 
     try {
       const { data } = await toast.promise(
-        axios.post(
-          `${process.env.REACT_APP_API_ENDPOINT}user/login`,
-          guestUserData
-        ),
+        axios.post(`${apiUrl}user/login`, guestUserData),
         {
           pending: "Logging in....",
           success: "Logged in successfully",

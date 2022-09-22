@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: process.env.REACT_APP_API_ENDPOINT });
+const API = axios.create({
+  baseURL: "https://mern-socket-io-chat-app.herokuapp.com",
+});
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("userData")) {
