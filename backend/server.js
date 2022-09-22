@@ -41,7 +41,7 @@ if (process.env.NODE_ENV === "production") {
 // --------------------------deployment------------------------------
 
 const server = app.listen(process.env.PORT || 5000, () =>
-  console.log(`Example app listening on port ${__dirname1}`)
+  console.log(`Example app listening on port ${process.env.PORT || 5000}`)
 );
 
 const io = new Server(server, {
