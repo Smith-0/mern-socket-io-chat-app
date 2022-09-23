@@ -20,7 +20,7 @@ export default function Auth() {
     password: "",
     cpassword: "",
   });
-  const apiUrl = "https://mern-socket-io-chat-app.herokuapp.com";
+  const apiUrl = "https://mern-chat-app-socket.herokuapp.com";
 
   useEffect(() => {
     let passwordInput = document.getElementById("password");

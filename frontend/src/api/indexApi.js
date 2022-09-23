@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://mern-socket-io-chat-app.herokuapp.com",
+  baseURL: "https://mern-chat-app-socket.herokuapp.com",
 });
 
 API.interceptors.request.use((req) => {
