@@ -55,7 +55,7 @@ export default function Auth() {
         formData.append("picture", imagefile.files[0]);
         try {
           const { data } = await toast.promise(
-            await axios.post(`${apiUrl}user/register`, formData, {
+            await axios.post(`${apiUrl}/user/register`, formData, {
               headers: {
                 "Content-Type": "multipart/form-data",
               },
@@ -78,7 +78,7 @@ export default function Auth() {
     } else {
       try {
         const { data } = await toast.promise(
-          axios.post(`${apiUrl}user/login`, userData),
+          axios.post(`${apiUrl}/user/login`, userData),
           {
             pending: "Logging in....",
             success: "Logged in successfully",
@@ -114,7 +114,7 @@ export default function Auth() {
 
     try {
       const { data } = await toast.promise(
-        axios.post(`${apiUrl}user/login`, guestUserData),
+        axios.post(`${apiUrl}/user/login`, guestUserData),
         {
           pending: "Logging in....",
           success: "Logged in successfully",
