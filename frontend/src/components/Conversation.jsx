@@ -21,12 +21,12 @@ import inChatMsgReceivedSound from "../audio/inChatMsgReceivedSound.mp3";
 import notificationSound from "../audio/notificationSound.mp3";
 import { fetchChat } from "../actions/chatAction";
 import ProfileModal from "./ProfileModal";
+import { apiUrl } from "../api/indexApi";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const ENDPOINT = "https://mern-chat-app-socket.herokuapp.com";
 var socket, selectedChatCompare;
 
 const Conversation = ({
@@ -69,7 +69,7 @@ const Conversation = ({
   };
 
   useEffect(() => {
-    socket = io(ENDPOINT);
+    socket = io(apiUrl);
 
     socket.on("connected", () => setSocketConnected(true));
     socket.on("typing", () => setIsTyping(true));
@@ -165,9 +165,13 @@ const Conversation = ({
 
   useEffect(() => {
     if (notification !== null)
-      toast.success(`${notification?.from} :- ${notification?.msg}`, {
-        icon: MdMessage,
-      });
+      toast.success(
+        `sahil ghangash ${notification?.from} :- ${notification?.msg}`,
+        {
+          icon: MdMessage,
+          position: "bottom-center",
+        }
+      );
     setNotification(null);
   }, [notification]);
 

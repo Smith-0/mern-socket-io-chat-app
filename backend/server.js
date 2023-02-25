@@ -47,7 +47,7 @@ const server = app.listen(process.env.PORT || 5000, () =>
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://mern-chat-app-socket.herokuapp.com",
+    origin: "https://web-production-7ccd.up.railway.app/",
   },
 });
 

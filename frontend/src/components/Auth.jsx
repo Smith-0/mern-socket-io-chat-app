@@ -8,6 +8,7 @@ import { Avatar } from "@chakra-ui/react";
 
 // import { signUp, signIn } from "../actions/users";
 import mainLogo from "../images/logo/main_logo_png.png";
+import { apiUrl } from "../api/indexApi";
 
 export default function Auth() {
   const navigate = useNavigate();
@@ -20,7 +21,6 @@ export default function Auth() {
     password: "",
     cpassword: "",
   });
-  const apiUrl = "https://mern-chat-app-socket.herokuapp.com";
 
   useEffect(() => {
     let passwordInput = document.getElementById("password");
