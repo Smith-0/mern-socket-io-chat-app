@@ -42,7 +42,6 @@ const ChatPage = () => {
         conversationSection.style.display = "none";
       }
     } else if (above768.matches) {
-      console.log("matches");
       chatsSection.style.display = "block";
       conversationSection.style.display = "block";
     }

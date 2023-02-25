@@ -165,13 +165,9 @@ const Conversation = ({
 
   useEffect(() => {
     if (notification !== null)
-      toast.success(
-        `sahil ghangash ${notification?.from} :- ${notification?.msg}`,
-        {
-          icon: MdMessage,
-          position: "bottom-center",
-        }
-      );
+      toast.success(`${notification?.from}: ${notification?.msg}`, {
+        icon: MdMessage,
+      });
     setNotification(null);
   }, [notification]);
 
