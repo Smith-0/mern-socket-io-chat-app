@@ -46,20 +46,26 @@ export const accessChat = async (req, res) => {
 
 export const fetchChats = async (req, res) => {
   try {
-    Chat.find({ users: { $elemMatch: { $eq: req.userId } } })
-      .populate("users", "-password")
-      .populate("groupAdmin", "-password")
-      .populate("latestMessage")
-      .sort({ updatedAt: -1 })
-      .then(async (response) => {
-        response = await User.populate(response, {
-          path: "latestMessage.sender",
-          select: "name picture phone_number",
-        });
-        res.status(200).send(response);
-      });
+    const chats = await Chat.find({
+      users: { $elemMatch: { $eq: req.userId } },
+    })
+      .populate("users", "-password") // Populate users excluding their password
+      .populate("groupAdmin", "-password") // Populate group admin excluding their password
+      .populate("latestMessage") // Populate the latest message
+      .sort({ updatedAt: -1 }); // Sort chats by latest updated timestamp
+
+    // Populate the sender of the latest message
+    const populatedChats = await User.populate(chats, {
+      path: "latestMessage.sender",
+      select: "name picture phone_number", // Select specific fields for sender
+    });
+
+    res.status(200).send(populatedChats); // Send the populated chats
   } catch (error) {
-    console.log(error);
+    console.error("Error fetching chats:", error); // Log the error for debugging
+    res
+      .status(500)
+      .json({ message: "Failed to fetch chats", error: error.message }); // Send error response with status code 500
   }
 };
 

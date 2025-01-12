@@ -4,12 +4,7 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter,
   ModalBody,
-  ModalCloseButton,
-  Button,
-  FormControl,
-  Input,
   Avatar,
 } from "@chakra-ui/react";
 import { IoCloseSharp } from "react-icons/io5";
@@ -48,7 +43,6 @@ const ProfileModal = ({ isOpen, onClose, user, userType }) => {
             <div className="flex flex-col justify-center items-center">
               <div style={{ width: "200px", margin: "1rem auto 2rem auto" }}>
                 <Avatar
-                  bg="gray.300"
                   name={user.name}
                   src={user.picture}
                   style={{ width: "200px", height: "200px" }}

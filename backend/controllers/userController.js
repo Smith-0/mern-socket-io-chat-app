@@ -7,9 +7,13 @@ import cloudinary from "../helper/cloudinaryImages.js";
 export const register = async (req, res) => {
   let userData = req.body;
   try {
-    const { url } = await cloudinary.uploader.upload(req.file.path, {
-      public_id: `profile_pic/${userData.phone_number}`,
-    });
+    let url = "";
+    if (req?.file?.path) {
+      const { url: imgUrl } = await cloudinary.uploader.upload(req.file.path, {
+        public_id: `profile_pic/${userData.phone_number}`,
+      });
+      url = imgUrl;
+    }
 
     const phoneNumberExist = await User.findOne({
       phone_number: userData.phone_number,
@@ -64,22 +68,35 @@ export const login = async (req, res) => {
 
     res.status(200).json({ token, user });
   } catch (error) {
-    console.log(error);
+    console.log("Error in login", error);
   }
 };
 
 export const getAllUsers = async (req, res) => {
-  const keyword = req.query.search
-    ? {
-        $or: [
-          { name: { $regex: req.query.search, $options: "i" } },
-          { phone_number: { $regex: req.query.search, $options: "i" } },
-        ],
-      }
-    : {};
+  try {
+    const searchQuery = req.query.search || "";
 
-  const users = await User.find(keyword).find({ _id: { $ne: req.userId } });
-  res.send(users);
+    // Define search keyword conditions
+    const keyword = searchQuery
+      ? {
+          $or: [
+            { name: { $regex: searchQuery, $options: "i" } }, // Case-insensitive regex search for `name`
+            { phone_number: { $regex: searchQuery, $options: "i" } }, // Case-insensitive regex search for `phone_number`
+          ],
+        }
+      : {};
+
+    // Find users excluding the logged-in user (_id not equal to req.userId)
+    const users = await User.find({
+      ...keyword,
+      _id: { $ne: req.userId }, // Exclude the logged-in user
+    });
+
+    res.status(200).send(users);
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    res.status(500).json({ message: "Failed to fetch users" });
+  }
 };
 
 export const updateUser = async (req, res) => {

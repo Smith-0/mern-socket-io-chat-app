@@ -106,7 +106,6 @@ const Navbar = () => {
                       {/* <div className="profile__pic__overlay"></div> */}
                       <BsFillCameraFill className="profile__pic__overlay__icon" />
                       <Avatar
-                        bg="gray.300"
                         name={user?.name}
                         src={user?.picture}
                         style={{
@@ -143,7 +142,6 @@ const Navbar = () => {
             onClick={() => setIsOpenProfileModal(true)}
           >
             <Avatar
-              bg="gray.300"
               size="md"
               name={user?.name}
               src={user?.picture}

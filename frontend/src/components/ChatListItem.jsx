@@ -45,11 +45,7 @@ const ChatListItem = ({ chat, setIsChatOpen, setAllNotification }) => {
           onClick={handleClick}
           className="hover:bg-gray-50 flex flex-row justify-start items-center px-[1.3rem] cursor-pointer"
         >
-          <Avatar
-            bg="gray.300"
-            name={chatWithUser.name}
-            src={chatWithUser.picture}
-          />
+          <Avatar name={chatWithUser.name} src={chatWithUser.picture} />
           <div className="relative ml-3 pl-5 border-y-[0.2px] border-gray-200 py-3 flex-1">
             <div className="name font-semibold text-lg">
               {isGroupChat ? chatName : chatWithUser.name}

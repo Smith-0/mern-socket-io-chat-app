@@ -32,9 +32,10 @@ export const sendMessages = async (req, res) => {
 
 export const allMessages = async (req, res) => {
   const chatId = req.params.chatId;
+  if (!chatId) return;
 
   try {
-    const messages = await Message.find({ chat: req.params.chatId })
+    const messages = await Message.find({ chat: chatId })
       .populate("sender", "name pic email")
       .populate("chat");
     res.status(200).send(messages);

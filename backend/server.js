@@ -47,7 +47,7 @@ const server = app.listen(process.env.PORT || 5000, () =>
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://web-production-7ccd.up.railway.app/",
+    origin: process.env.FRONTEND_BASE_URL,
   },
 });
 
@@ -81,9 +81,6 @@ io.on("connection", (socket) => {
 });
 
 mongoose
-  .connect(process.env.CONNECTION_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.CONNECTION_URL)
   .then(() => server)
-  .catch((error) => console.error(error));
+  .catch((error) => console.log(error));

@@ -55,7 +55,7 @@ const Conversation = ({
 
   useEffect(() => {
     setSelectedChatRealTime(selectedChat);
-    dispatch(getAllMessagesInChat(selectedChat?._id));
+    if (selectedChat?._id) dispatch(getAllMessagesInChat(selectedChat?._id));
     selectedChatCompare = selectedChat;
     // eslint-disable-next-line
   }, [selectedChat]);
@@ -184,6 +184,7 @@ const Conversation = ({
       );
       setMessageInput("");
       setTyping(false);
+      setShowEmojiPicker(false);
     } else {
       alert("Empty Message");
     }
@@ -218,7 +219,6 @@ const Conversation = ({
 
             <Avatar
               size="md"
-              bg="gray.300"
               name={otherUser.name}
               src={otherUser.picture}
               onClick={onOpen}
@@ -268,7 +268,7 @@ const Conversation = ({
                         </button>
                       )}
                     </Menu.Item>
-                    {/* <Menu.Item>
+                    <Menu.Item>
                       {({ active }) => (
                         <button
                           type="button"
@@ -298,7 +298,7 @@ const Conversation = ({
                           close chat
                         </button>
                       )}
-                    </Menu.Item> */}
+                    </Menu.Item>
                   </div>
                 </Menu.Items>
               </Transition>
@@ -339,7 +339,7 @@ const Conversation = ({
         />
         <MdSend
           onClick={handleSendMessage}
-          className="inline ml-4 mr-2 cursor-pointer text-4xl text-[#54656f]"
+          className="prevent-select inline ml-4 mr-2 cursor-pointer text-4xl text-[#54656f]"
         />
       </div>
 

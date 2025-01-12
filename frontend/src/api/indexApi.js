@@ -1,5 +1,5 @@
 import axios from "axios";
-export const apiUrl = "https://web-production-7ccd.up.railway.app";
+export const apiUrl = process.env.REACT_APP_API_BASE_URL;
 
 const API = axios.create({
   baseURL: apiUrl,
