@@ -84,3 +84,5 @@ mongoose
   .connect(process.env.CONNECTION_URL)
   .then(() => server)
   .catch((error) => console.log(error));
+
+export default app;
